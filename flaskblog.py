@@ -30,7 +30,7 @@ def about():
     return render_template("about.html", title = "About")
 
 
-@app.route("/register", method=["POST", "GET"])
+@app.route("/register", methods=["POST", "GET"])
 def register():
     form = RegistrationForm()
     return render_template("register.html", title = "Register", form=form)
