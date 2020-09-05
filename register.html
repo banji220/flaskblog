@@ -35,8 +35,13 @@
             </div>
         </fieldset>
             <div class="form-group">
-                {{form.submit(class)}}
+                {{form.submit(class="btn btn-outline-info")}}
             </div>
         </form>
+    </div>
+    <div class = "border-top pt-3">
+        <small class="text-muted">
+            Already Have an account? <a class = "ml-2" href="{{ url_for('login')  }}"></a>
+        </small>
     </div>
 {% endblock content %}
