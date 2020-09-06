@@ -59,7 +59,16 @@
 
             <div class="form-group">
                 {{ form.confirm_password.label(class = "form-control-label") }}
+                {% if form.confirm_password.errors %}
+                {{ form.confirm_password(class = "form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in confirm_password_errors %}
+                        <span> {{ error }} </span>
+                    {% endfor %}
+                </div>
+                {% else %}
                 {{ form.confirm_password(class = "form-control form-control-lg")}}
+                {% endif %}
             </div>
         </fieldset>
             <div class="form-group">
