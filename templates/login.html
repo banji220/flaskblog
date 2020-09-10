@@ -7,6 +7,10 @@
                 <legend class="border-bottom mb-4">Sign in</legend>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
+
+                    {% if form.email.errors %}
+                    {% endif %}
+
                     {{ form.email(class="form-control form-control-lg") }}
                 </div>
 
