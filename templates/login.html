@@ -16,9 +16,9 @@
                             {% endfor %}
 
                         </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
                     {% endif %}
-
-                    {{ form.email(class="form-control form-control-lg") }}
                 </div>
 
 
