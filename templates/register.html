@@ -10,8 +10,6 @@
                 {% if form.username.errors %}
                 {{ form.username(class = "form-control form-control-lg is-invalid") }}
                 <div class="alert alert-danger">
-                    
-                    Username must be between 4-20 character
                     {% for error in form.username.erros %}
                     <small> {{ error }} </small>
                     {%  endfor %}
