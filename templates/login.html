@@ -35,6 +35,10 @@
                     {{ form.password(class= "form-control form-control-lg") }}
                     {% endif %}
                 </div>
+                <div class="form-check">
+                    {{ form.remember_me(class = "form-check-input") }}
+                    {{ form.remember_me.label(class = "form-check-label") }}
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class= "btn btn-outline-info") }}
