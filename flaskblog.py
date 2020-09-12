@@ -46,7 +46,7 @@ def login():
             flash(f"Hey, You have been logged in successfuly 🎈", "success")
             return redirect(url_for("home"))
         else:
-            flash(f"Login Was Unsuccessful 😕, Please check username and password")
+            flash(f"Login Was Unsuccessful 😕, Please check your username and password!", "danger")
         
     return render_template("login.html", title = "Login", form=form)
 
