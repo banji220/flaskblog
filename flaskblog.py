@@ -34,7 +34,7 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f"Accounte created for {form.username.data}", "alert-success")
+        flash(f"Accounte created for {form.username.data} with ❤️ ", "success")
         return redirect(url_for("home"))
     return render_template("register.html", title = "Register", form=form)
 
@@ -42,7 +42,7 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash(f"Hey, You have been logged in successfuly 🎈", "alert-success")
+        flash(f"Hey, You have been logged in successfuly 🎈", "success")
         return redirect(url_for("home"))
     return render_template("login.html", title = "Login", form=form)
 
