@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
@@ -24,7 +25,10 @@ class User(db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=True)
-
+    date_posted = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+    
+    
+    
 posts = [
     {
         "author": "@Banji",
