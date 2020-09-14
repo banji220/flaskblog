@@ -1,14 +1,15 @@
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
-from flask_sqlalchemy import SQLAlchemy
+
 
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "SjG_2aPTAvf_VhRL-cWz2aObx8ylghvr"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db "
 db = SQLAlchemy(app)
-
+ 
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -21,7 +22,8 @@ class User(db.Model):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}' )"
     
-
+    
+    
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
