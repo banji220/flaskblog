@@ -1,4 +1,4 @@
-
+from flaskblog import app
  
 
 
