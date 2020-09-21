@@ -1,6 +1,6 @@
-from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from forms import RegistrationForm, LoginForm
+from flask_sqlalchemy import SQLAlchemy
+
 
 
 
