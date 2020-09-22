@@ -1,5 +1,5 @@
 from flaskblog import app
- 
+from flaskblog import bcrypt
 
 
 
