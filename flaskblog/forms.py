@@ -13,6 +13,13 @@ class RegistrationForm(FlaskForm):
     
     submit = SubmitField("Sign Up")
     
+    #&The code below is like a template for validation error(SO remember how to use it)
+    #!def validate_field(self, field):
+        #!if True:
+            #!raise ValidationError("Validation Error")
+    
+    
+    
     
 class LoginForm(FlaskForm):
     email = StringField("Email", validators = [DataRequired(), Email()])
