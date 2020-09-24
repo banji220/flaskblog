@@ -24,6 +24,7 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError("That username is already taken, Please choose a different username.")
+
         
     
 class LoginForm(FlaskForm):
