@@ -17,16 +17,24 @@ class RegistrationForm(FlaskForm):
     #&The code below is like a template for validation error(SO remember how to use it)
     #!def validate_field(self, field):
         #!if True:
-            #!raise ValidationError("Validation Error")
+            #!raise ValidationError("Validation message")
     
     
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError("That username is already taken, Please choose a different username.")
+    
+    
+    def validate_email(self, email):
+        email = User.query.filter_by(email=email.data).first()
+        if email:
+            raise ValidationError("This email is already taken, Please choose a different email.")
+        
 
         
-    
+        
+        
 class LoginForm(FlaskForm):
     email = StringField("Email", validators = [DataRequired(), Email()])
     
