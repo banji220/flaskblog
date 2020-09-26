@@ -66,6 +66,6 @@ def logout():
     logout_user()
     return redirect(url_for("home"))
 
-
+@app.route("/account")
 def account():
     
