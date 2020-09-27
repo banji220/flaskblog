@@ -55,7 +55,7 @@ def login():
             if user and password_checking:
                 login_user(user, remember=form.remember_me.data)
                 next_page = request.args.get("next")
-                return redirect(url_for("home"))
+                return redirect(next_page) if next_page else redirect(url_for("home"))
             else:
                  flash(f"Login Was Unsuccessful 😕, Please check your username and password!", "danger")
         
