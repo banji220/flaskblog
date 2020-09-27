@@ -1,7 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <h1>{{ current_user.username }}</h1>
-
+    <div class="content-section">
+        <div class="media">
+            <img class="rounded-circle account-img" src="userimage.jpg" alt="user_image">
+            <div class="media-body">
+                <h2 class="account-heading">Username</h2>
+                <p class="text-secondary">username@yourmail.com</p>
+            </div>
+        </div>
+        <!-- From Here -->
+    </div>
 
 {% endblock content %}
