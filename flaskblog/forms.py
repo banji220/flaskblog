@@ -46,4 +46,5 @@ class LoginForm(FlaskForm):
     
     
     
+class UpdateAccountForm(FlaskForm):
     
