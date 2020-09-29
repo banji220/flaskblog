@@ -49,4 +49,8 @@ class LoginForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(), Length(min=4, max=20)], render_kw={"placeholder":"@username"})
     
+    email = StringField("Email", validators = [DataRequired(), Email()], render_kw ={"placeholder":"email@example.com"})
+    
+    submit = SubmitField("Update")
+    
     
