@@ -55,6 +55,8 @@ class UpdateAccountForm(FlaskForm):
     submit = SubmitField("Update")
     
     def validate_username(self, username):
+        #^ if username.data != current_username means that if they are equal it won't check the second validation, so if they are --->
+        #^ ---> Equal it will check the second if statement and if it's True, it will throw an error!(So user can submit it's username without changing)
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
