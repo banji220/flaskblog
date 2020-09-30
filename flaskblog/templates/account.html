@@ -26,8 +26,9 @@
                                     <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
+                        {% else %}
+                            {{ form.username(class="form-control form-control-lg") }}
                         {% endif %}
-                        {{ form.username(class="form-control form-control-lg") }}
                     </div>
 
 
