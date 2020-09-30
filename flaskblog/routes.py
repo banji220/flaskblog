@@ -12,7 +12,7 @@ posts = [
         "date" : "Sep 1, 2020"
     },
     {
-        "author": "@mirdarx",
+        "author": "@Amirdarx",
         "title": "Blog Post 2",
         "content": "My Second blog post in Flask",
         "date": "Sep 4, 2020"
