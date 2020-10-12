@@ -56,7 +56,7 @@
                         {{ form.picture(class="form-control-file") }}
                         {% if form.picture.errors %}
                             {% for error in form.picture.errors %}
-                                <span>{{ error }}</span>
+                                <span class="text-danger">{{ error }}</span></br>
                             {% enfor %}
                         {% endif %}
                     </div>
