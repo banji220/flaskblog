@@ -83,6 +83,11 @@ def save_picture(form_picture):
     image_file.thumbnail(output_size)
     
     image_file.save(picture_path)
+    
+    previous_picture = os.path.join(app.root_path, "static/profile_pics", current_user.image_file)
+    if os.path.exists(previous_picture):
+        os.remove(previous_picture)
+    
     return picture_filename
 
 
