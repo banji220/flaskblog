@@ -76,8 +76,16 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_filename = random_hex + f_ext
     picture_path = os.path.join(app.root_path, "static/profile_pics", picture_filename)
-    form_picture.save(picture_path)
+    
+    #^ In the codes below We're gonna resize the picture to the 125*125
+    output_size = (125, 125)
+    image_file = Image.open(form_picture)
+    image_file.thumbnail(output_size)
+    
+    image_file.save(picture_path)
     return picture_filename
+
+
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
