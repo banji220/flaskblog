@@ -76,6 +76,7 @@ def save_picture(form_picture):
     picture_filename = random_hex + f_ext
     picture_path = os.path.join(app.root_path, "static/profile_pics", picture_filename)
     form_picture.save(picture_path)
+    return picture_filename
 
 @app.route("/account", methods=["GET", "POST"])
 @login_required
