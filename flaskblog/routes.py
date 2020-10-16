@@ -28,9 +28,13 @@ def home():
     return render_template("home.html", posts=posts)
 
 
+
+
 @app.route("/about")
 def about():
     return render_template("about.html", title = "About")
+
+
 
 
 @app.route("/register", methods=["POST", "GET"])
@@ -46,6 +50,9 @@ def register():
         flash(f"Account has been created for with ❤️! You are now be able to log in", "success")
         return redirect(url_for("login"))
     return render_template("register.html", title = "Register", form=form)
+
+
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -63,6 +70,8 @@ def login():
                  flash(f"Login Was Unsuccessful 😕, Please check your username and password!", "danger")
         
     return render_template("login.html", title = "Login", form=form)
+
+
 
 
 @app.route("/logout")
@@ -89,6 +98,7 @@ def save_picture(form_picture):
         os.remove(previous_picture)
     
     return picture_filename
+
 
 
 
