@@ -130,6 +130,6 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        flash("Your post has been successfuly published!" "success")
+        flash("Your post has been successfuly published!", "success")
         return redirect(url_for("home"))
     return render_template("create_post.html", title = "New Post", form=form)
