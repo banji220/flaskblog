@@ -1,7 +1,9 @@
+from operator import methodcaller
 import os
 import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
+from sqlalchemy.util.langhelpers import methods_equivalent
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flaskblog.models import User, Post
@@ -153,4 +155,9 @@ def update_post(post_id):
         form.title.data = post.title
         form.content.data = post.content
     return render_template("create_post.html", title="Update Post", form=form, legend="Update Post")
+
     
+@app.route("/post/<int:post_id>/delete", methods=["GET", "POST"])
+@login_required
+def delete_post(post_id):
+    post = Post.query.get_or_404(post_id)
