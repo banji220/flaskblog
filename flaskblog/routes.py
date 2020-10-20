@@ -1,7 +1,7 @@
 import os
 import secrets
 from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 from flaskblog.models import User, Post
@@ -112,6 +112,7 @@ def account():
 
 
 
+
 @app.route("/post/new", methods=["GET", "POST"])
 @login_required
 def new_post():
@@ -125,7 +126,22 @@ def new_post():
     return render_template("create_post.html", title = "New Post", form=form)
 
 
+
+
 @app.route("/post/<int:post_id>")
 def post(post_id):
     post = Post.query.get_or_404(post_id)
     return render_template("post.html", title = post.title, post = post)
+
+
+
+
+@app.route("/post/<int:post_id>/update")
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    form = PostForm()
+    return render_template("create_post.html", title="Update Post", form=form)
+    
