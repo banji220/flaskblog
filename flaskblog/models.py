@@ -20,6 +20,15 @@ class User(db.Model, UserMixin):
         return serializing.dumps({"user_id": self.id}).decode("utf-8")
         
     
+    
+    def verify_reset_token(token):
+        serializing = Serializer(app.config["SECRET_KEY"])
+        try:
+            user_id = serializing.loads(token)["user_id"]
+        except:
+            return None
+        return User.query.get(user_id)
+    
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}' )"
     
