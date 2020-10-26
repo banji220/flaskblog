@@ -20,7 +20,7 @@ class User(db.Model, UserMixin):
         return serializing.dumps({"user_id": self.id}).decode("utf-8")
         
     
-    
+    @staticmethod
     def verify_reset_token(token):
         serializing = Serializer(app.config["SECRET_KEY"])
         try:
