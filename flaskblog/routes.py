@@ -4,11 +4,11 @@ import secrets
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from sqlalchemy.util.langhelpers import methods_equivalent
-from flaskblog import app, db, bcrypt
+from flaskblog import app, db, bcrypt, mail
 from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, PasswordResetForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user,logout_user, login_required
-
+from flask_mail import Message
 
 @app.route("/")
 @app.route("/home")
@@ -188,9 +188,17 @@ def user_posts(username):
 
 
 def send_reset_email(user):
-    pass
-
-
+    token = user.get_reset_token()
+    msg = Message("Password Reset Request", sender="khanjani1997@gmail.com", recipients=[user.email])
+    
+    
+    
+    msg.body = f"""Hey, To reset your password, Visit the following link:
+    
+{url_for("reset_token", token=token, _external = True)}
+    
+If you didn't make this request then ignore this email and no changes will be made
+"""
 
 
 @app.route("/reset_password", methods=["GET", "POST"])
@@ -217,4 +225,10 @@ def reset_token(token):
         flash("That is a invalid or expired token", "danger")
         return redirect(url_for("reset_request"))
     form = PasswordResetForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
+        user.password = hashed_password
+        db.session.commit()
+        flash(f"You password has been update! You are now be able to log in", "success")
+        return redirect(url_for("login"))
     return render_template("reset_token.html", title="Reset Password", form=form)
