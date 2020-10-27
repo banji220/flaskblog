@@ -187,7 +187,7 @@ def user_posts(username):
 
 
 
-@app.route("/reset_password", method=["GET", "POST"])
+@app.route("/reset_password", methods=["GET", "POST"])
 def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for("home"))
