@@ -184,3 +184,12 @@ def user_posts(username):
             .paginate(page=page, per_page=5)
     return render_template("user_posts.html", posts=posts, user=user)
 
+
+
+
+@app.route("/reset_password", method=["GET", "POST"])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for("home"))
+    form = RequestResetForm()
+    return render_template("reset_request.html", title="Reset Password", form=form)
