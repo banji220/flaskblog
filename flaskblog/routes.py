@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from sqlalchemy.util.langhelpers import methods_equivalent
 from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, PasswordResetForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user,logout_user, login_required
 
@@ -183,3 +183,4 @@ def user_posts(username):
             .order_by(Post.date_posted.desc())\
             .paginate(page=page, per_page=5)
     return render_template("user_posts.html", posts=posts, user=user)
+
