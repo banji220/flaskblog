@@ -64,3 +64,21 @@ class UpdateAccountForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 return ValidationError("That email is already taken!")
+            
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired(), Email()], render_kw={"placeholder":"mail@example.com"})
+    submit = SubmitField("Request Password Reset")
+    
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError("There is no account with that email, You must register first!")
+
+
+
+class PasswordResetForm(FlaskForm):
+    password = PasswordField("Password", validators=[DataRequired()], render_kw={"placeholder": "Password must be between 4-20 character"})
+    confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")] )
+    submit = SubmitField("Reset Password")
