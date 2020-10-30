@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 #*login_view actually will work like a 'url_for()' and the line below will redirect the account page 
-login_manager.login_view = "login"
+login_manager.login_view = "users.login"
 login_manager.login_message_category = "warning"
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
