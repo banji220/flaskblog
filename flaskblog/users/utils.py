@@ -35,7 +35,7 @@ def send_reset_email(user):
     
     msg.body = f"""Hey, To reset your password, Visit the following link:
     
-{url_for("reset_token", token=token, _external = True)}
+{url_for("users.reset_token", token=token, _external = True)}
     
 If you didn't make this request then ignore this email and no changes will be made
 """

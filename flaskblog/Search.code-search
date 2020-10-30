@@ -1,0 +1,63 @@
+# Query: url_for
+# Flags: CaseSensitive
+# Including: ./flaskblog
+
+40 results - 9 files
+
+flaskblog/__init__.py:
+  15: #*login_view actually will work like a 'url_for()' and the line below will redirect the account page 
+
+flaskblog/posts/routes.py:
+   1: from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint)
+  21:         return redirect(url_for("main.home"))
+  47:         return redirect(url_for("posts.post", post_id=post.id))
+  66:     return redirect(url_for("main.home"))
+
+flaskblog/templates/home.html:
+  11:             <img class="rounded-circle article-img" src=" {{ url_for('static', filename='profile_pics/' + post.author.image_file) }} " alt="">
+  14:                 <a class="mr-2" href="{{ url_for('user_posts', username=posts.post.author.username) }}">{{ post.author.username }}</a>
+  17:             <h2><a class="article-title" href=" {{ url_for('posts.post', post_id = post.id) }} ">{{ post.title }}</a></h2>
+  29:                 <a class="btn btn-warning mb-4" href=" {{ url_for('main.home', page=page_num) }} "> {{ page_num }} </a>
+  31:                 <a class="btn btn-outline-warning mb-4" href=" {{ url_for('main.home', page=page_num) }} "> {{ page_num }} </a>
+
+flaskblog/templates/layout.html:
+  11:     <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename = 'main.css') }} ">
+  28:                 <a class="nav-item nav-link" href=" {{url_for('main.home')}} ">Home</a>
+  29:                 <a class="nav-item nav-link" href=" {{url_for('main.about')}} ">About</a>
+  34:                   <a class="nav-item nav-link" href=" {{url_for('posts.new_post')}} ">New Post</a>
+  35:                   <a class="nav-item nav-link" href=" {{url_for('users.account')}} ">Account</a>
+  36:                   <a class="nav-item nav-link" href=" {{url_for('users.logout')}} ">Logout</a>
+  38:                   <a class="nav-item nav-link" href=" {{url_for('users.login')}} ">Login</a>
+  39:                   <a class="nav-item nav-link" href=" {{url_for('users.register')}} ">Register</a>
+
+flaskblog/templates/login.html:
+  46:                     <a href=" {{url_for('users.reset_request')}} ">Forgot Password?</a>
+  55:             Need An Account? <a class="ml-3" href=" {{ url_for('users.register') }} ">Sign Up</a>
+
+flaskblog/templates/post.html:
+   6:         <img class="rounded-circle article-img" src=" {{ url_for('static', filename='profile_pics/' + post.author.image_file) }} " alt="">
+   9:             <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+  13:                     <a class="btn btn-warning btn-sm mt-1 mb-1" href=" {{ url_for('update_post', post_id=post.id) }} ">Update</a>
+  39:             <form action=" {{ url_for('delete_post', post_id=post.id) }} " method="POST">
+
+flaskblog/templates/register.html:
+  83:             Already Have An Account? <a class = "ml-2" href="{{ url_for('users.login')  }}">Sign In</a>
+
+flaskblog/users/routes.py:
+    1: from flask import render_template, url_for, flash, redirect, request, Blueprint
+   15:         return redirect(url_for("main.home"))
+   23:         return redirect(url_for("users.login"))
+   32:         return redirect(url_for("main.home"))
+   40:                 return redirect(next_page) if next_page else redirect(url_for("main.home"))
+   51:     return redirect(url_for("main.home"))
+   68:         return redirect(url_for("main.home"))
+   72:     image_file = url_for("static", filename="profile_pics/" + current_user.image_file)
+   93:         return redirect(url_for("main.home"))
+   99:         return redirect(url_for("users.login"))
+  108:         return redirect(url_for("main.home"))
+  112:         return redirect(url_for("reset_request"))
+  119:         return redirect(url_for("uslogin"))
+
+flaskblog/users/utils.py:
+   4: from flask import url_for
+  38: {url_for("reset_token", token=token, _external = True)}
