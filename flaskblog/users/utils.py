@@ -1,15 +1,15 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for
+from flask import url_for, current_app
 from flask_mail import Message
-from flaskblog import app, mail
+from flaskblog import mail
 from flask_login import current_user
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_filename = random_hex + f_ext
-    picture_path = os.path.join(app.root_path, "static/profile_pics", picture_filename)
+    picture_path = os.path.join(current_app.root_path, "static/profile_pics", picture_filename)
     
     #^ In the codes below We're gonna resize the picture to the 125*125
     output_size = (125, 125)
@@ -18,7 +18,7 @@ def save_picture(form_picture):
     
     image_file.save(picture_path)
     
-    previous_picture = os.path.join(app.root_path, "static/profile_pics", current_user.image_file)
+    previous_picture = os.path.join(current_app.root_path, "static/profile_pics", current_user.image_file)
     if os.path.exists(previous_picture):
         os.remove(previous_picture)
     
